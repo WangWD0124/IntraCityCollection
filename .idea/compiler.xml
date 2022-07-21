@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="icc-order" />
+        <module name="IntraCityCollection" />
+        <module name="icc-menber" />
+        <module name="icc-ware" />
+        <module name="icc-product" />
+        <module name="icc-coupon" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="icc-coupon" target="1.8" />
+      <module name="icc-menber" target="1.8" />
+      <module name="icc-order" target="1.8" />
+      <module name="icc-product" target="1.8" />
+      <module name="icc-ware" target="1.8" />
+      <module name="IntraCityCollection" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="IntraCityCollection" options="-parameters" />
+      <module name="icc-coupon" options="-parameters" />
+      <module name="icc-menber" options="-parameters" />
+      <module name="icc-order" options="-parameters" />
+      <module name="icc-product" options="-parameters" />
+      <module name="icc-ware" options="-parameters" />
+    </option>
+  </component>
+</project>
