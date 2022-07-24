@@ -2,19 +2,23 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="icc-order" />
-        <module name="IntraCityCollection" />
-        <module name="icc-menber" />
         <module name="icc-ware" />
         <module name="icc-product" />
+        <module name="icc-menber" />
+        <module name="feign-api" />
+        <module name="gateway" />
         <module name="icc-coupon" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="feign-api" target="1.8" />
+      <module name="gateway" target="1.8" />
       <module name="icc-coupon" target="1.8" />
       <module name="icc-menber" target="1.8" />
       <module name="icc-order" target="1.8" />
@@ -26,6 +30,8 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="IntraCityCollection" options="-parameters" />
+      <module name="feign-api" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="icc-coupon" options="-parameters" />
       <module name="icc-menber" options="-parameters" />
       <module name="icc-order" options="-parameters" />

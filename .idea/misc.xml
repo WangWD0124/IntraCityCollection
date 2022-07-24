@@ -9,6 +9,8 @@
         <option value="$PROJECT_DIR$/icc-order/pom.xml" />
         <option value="$PROJECT_DIR$/icc-ware/pom.xml" />
         <option value="$PROJECT_DIR$/icc-coupon/pom.xml" />
+        <option value="$PROJECT_DIR$/feign-api/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway/pom.xml" />
       </list>
     </option>
   </component>

@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/IntraCityCollection.iml" filepath="$PROJECT_DIR$/IntraCityCollection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/feign-api/feign-api.iml" filepath="$PROJECT_DIR$/feign-api/feign-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/icc-coupon/icc-coupon.iml" filepath="$PROJECT_DIR$/icc-coupon/icc-coupon.iml" />
       <module fileurl="file://$PROJECT_DIR$/icc-menber/icc-menber.iml" filepath="$PROJECT_DIR$/icc-menber/icc-menber.iml" />
       <module fileurl="file://$PROJECT_DIR$/icc-order/icc-order.iml" filepath="$PROJECT_DIR$/icc-order/icc-order.iml" />

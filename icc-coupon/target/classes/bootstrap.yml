@@ -1,0 +1,13 @@
+# server.port=9401,++
+# profiles:
+#    active: dev、test、prop  # 开发、测试、生产环境
+spring:
+  application:
+    name: icc-coupon # 服务名称
+  cloud:
+    nacos:
+      server-addr: localhost:10003 # nacos地址
+      config:
+        file-extension: yaml # 文件名后缀
+
+

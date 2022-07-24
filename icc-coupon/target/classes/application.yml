@@ -1,0 +1,28 @@
+### ----本地配置----
+
+# 针对要访问的各个服务设置负载均衡策略
+# NacosRule：
+# 1、先访问同一个集群中的服务实例；如果同集群中没有该服务实例则访问其他集群的，且报警提示；
+# 2、确定服务列表；
+# 3、在列表中采用随机访问策略
+icc-menber:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule
+icc-ware:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule
+icc-order:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule
+icc-product:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule
+# 针对要访问的各个服务设置负载均衡饥饿加载
+ribbon:
+  eager-load:
+    enabled: true
+    clients:
+      - icc-menber
+      - icc-ware
+      - icc-order
+      - icc-coupon
