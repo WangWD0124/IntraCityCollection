@@ -6,7 +6,6 @@
         <groupId>com.example</groupId>
         <artifactId>IntraCityCollection</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
     <artifactId>gateway</artifactId>
@@ -58,6 +57,8 @@
 
 
     <build>
+        <!-- 服务打包的最终名称 -->
+        <finalName>app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
