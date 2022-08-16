@@ -14,15 +14,11 @@ services:
     image: nacos/nacos-server:latest
     environment:
       MODE: standalone
-#    volumes:
-#      - "$PWD/nacos/standalone-logs/:/home/nacos/logs"
-#      - "$PWD/nacos/conf/application.properties:/home/nacos/conf/application.properties"
     ports:
       - "8848:8848"
     restart: always
     depends_on:
       - mysql
-#    network_mode: host
   nginx:
     container_name: nginx
     image: nginx:latest
@@ -34,7 +30,6 @@ services:
     ports:
       - "80:80"
     restart: always
-#    privileged: true
     depends_on:
       - nacos1
   gateway:
@@ -43,7 +38,6 @@ services:
       - "10000:10000"
     depends_on:
       - nacos1
-#      - nginx
   icc-menber:
     build: ./icc-menber
     depends_on:
@@ -69,3 +63,42 @@ services:
     depends_on:
       - nacos1
       - nginx
+
+  es1:
+    image: elasticsearch:7.12.1
+    container_name: es1
+    environment:
+      - node.name=es1
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es2
+      - cluster.initial_master_nodes=es1
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - "$PWD/elasticsearch/data/1:/usr/share/elasticsearch/data"
+      - "$PWD/elasticsearch/plugins:/usr/share/elasticsearch/plugins"
+      - "$PWD/elasticsearch/config/1/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+
+  es2:
+    image: elasticsearch:7.12.1
+    container_name: es2
+    environment:
+      - node.name=es2
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es1
+      - cluster.initial_master_nodes=es1,es2
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - "$PWD/elasticsearch/data/2:/usr/share/elasticsearch/data"
+      - "$PWD/elasticsearch/plugins:/usr/share/elasticsearch/plugins"
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    driver: bridge
+
+

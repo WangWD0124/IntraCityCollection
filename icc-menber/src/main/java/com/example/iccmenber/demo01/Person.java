@@ -1,5 +1,6 @@
 package com.example.iccmenber.demo01;
 
+
 import lombok.Data;
 
 @Data//可省略setter、getter
