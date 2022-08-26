@@ -38,6 +38,8 @@ feign:
     enabled: true # 开启feign对HttpClient的支持
     max-connections: 200 # 最大的连接数
     max-connections-per-route: 50 # 每个路径的最大连接数
+  sentinel:
+    enabled: true # 开启feign对sentinel的支持
 
 ## -----------------------rabbitmq消息队列-----------------------
 spring:
@@ -51,10 +53,16 @@ spring:
       direct:
         prefetch: 1 # 每次只能获取一条消息，处理完才能获取下一个消息
 
+## -----------------------sentinel流量控制-----------------------
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8090
+
 ## -----------------------mysql数据库-----------------------
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/heima?useUnicode=true & characterEncoding=utf-8 & useSSL=false & serverTimezone=GMT%2B8 & allowPublicKeyRetrieval=true
+    url: jdbc:mysql://mysql:3306/heima?useUnicode=true & characterEncoding=utf-8 & useSSL=false & serverTimezone=GMT%2B8 & allowPublicKeyRetrieval=true
     username: root
     password: 123456
 
@@ -63,6 +71,24 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
   type-aliases-package: com.example.iccmenber.demo03.pojo
+
+## -----------------------seata配置-----------------------
+seata:
+  registry: # TC服务注册中心的配置，微服务根据这些信息去注册中心获取tc服务地址
+    type: nacos # 注册中心类型 nacos
+    nacos:
+      server-addr: 192.168.145.101:80 # nacos地址
+      namespace: "" # namespace，默认为空
+      group: DEFAULT_GROUP # 分组，默认是DEFAULT_GROUP
+      application: seata-tc-server # seata服务名称
+      username: nacos
+      password: nacos
+  tx-service-group: seata-demo # 事务组名称
+  service:
+    vgroup-mapping: # 事务组与cluster的映射关系
+      seata-demo: SH
+  data-source-proxy-mode: XA  # AT\TCC\Saga @
+
 
 #logging:
 #  level:

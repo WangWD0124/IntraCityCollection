@@ -27,6 +27,12 @@ public class PersonController {
         return str;
     }
 
+    //实验：模拟返回查询数据
+    @RequestMapping(value = "/person2", method = RequestMethod.GET)
+    public String findName2(){
+        return "请求2";
+    }
+
     //实验5：feign服务端指定请求内容类型           consume是：指定请求内容类型；Produces是：指定返回内容类型。
     @RequestMapping(value = "/person/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

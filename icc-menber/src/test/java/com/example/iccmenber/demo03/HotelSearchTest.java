@@ -8,6 +8,7 @@ import org.apache.lucene.index.Term;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -25,8 +26,10 @@ import org.elasticsearch.search.aggregations.metrics.Min;
 import org.elasticsearch.search.aggregations.metrics.Sum;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+import org.elasticsearch.search.suggest.Suggest;
 import org.elasticsearch.search.suggest.SuggestBuilder;
 import org.elasticsearch.search.suggest.SuggestBuilders;
+import org.elasticsearch.search.suggest.completion.CompletionSuggestion;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -285,13 +288,21 @@ public class HotelSearchTest {
 
     @Test
     public void testSuggest() throws IOException {
-        SearchRequest request = new SearchRequest();
-        request.source().suggest(new SuggestBuilder().addSuggestion("mySuggestion",
-                SuggestBuilders.completionSuggestion("enter")
+        SearchRequest request = new SearchRequest("hotel");
+        request.source().suggest(new SuggestBuilder().addSuggestion("suggestions",
+                SuggestBuilders.completionSuggestion("suggestion")
                         .prefix("h")
                         .skipDuplicates(true)
                         .size(10)));
-        client.search(request, RequestOptions.DEFAULT);
+        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+        Suggest suggest = response.getSuggest();
+        CompletionSuggestion completionSuggestion = suggest.getSuggestion("suggestions");
+        List<String> suggestList = new ArrayList<>();
+        for (CompletionSuggestion.Entry.Option option : completionSuggestion.getOptions()){
+            String text = option.getText().string();
+            suggestList.add(text);
+        }
+        System.out.println(suggestList);
     }
 
 
